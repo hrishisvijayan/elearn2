@@ -33,6 +33,7 @@ function CourseDetail() {
     }
     },[]);
 
+   
    console.log( 'this is the related course data',relatedCourseData)
    console.log('hei this is title',relatedCourseData.map((hai,index)=>{console.log(hai.title)}))
     return (
@@ -48,7 +49,7 @@ function CourseDetail() {
                     </p>
                     <p className='fw-bold'>
                         Course By:
-                        <Link to="/teacher-details/1">
+                        <Link to={`/teacher-details/${teacherData.id}`}>
                             {teacherData.full_name}
                         </Link>
                     </p>

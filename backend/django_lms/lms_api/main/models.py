@@ -32,7 +32,7 @@ class CourseCategory(models.Model):
 #Course Model
 class Course(models.Model):
     category = models.ForeignKey(CourseCategory,on_delete=models.CASCADE)    #here cascade so that if the course category is deleted then the the course is deleted
-    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE) 
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE,related_name='teacher_courses') #this teacher_courses is added as new  
     title = models.CharField(max_length=150)
     description = models.TextField()
     featured_img=models.ImageField(upload_to='course_images/',null=True)     # for uploading images 
