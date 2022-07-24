@@ -70,11 +70,18 @@ class CourseList(generics.ListCreateAPIView):
     # permission_classes=[permissions.IsAuthenticated]
 
     def get_queryset(self):
+        print('yeah')
         qs=super().get_queryset()      #to get the query set from the parent class ListCreateApiview
         if 'result' in self.request.GET:      #is self is coming the url from the front end
+            print('yeah2')
             limit=int(self.request.GET['result']) 
             qs=models.Course.objects.all().order_by('-id')[:limit]    # only give 4 items of the list
+        # if 'category' in self.request.GET['category']:         #this is used to take the courses under specific techs but some error occured deal with it later(refer lms lecture 45 for clarity)
+        #     print('yeah3')
+        #     category = self.request.GET['category']
+        #     qs=models.Course.objects.filter(techs__icontains=category)
         return qs
+        
 
 class CourseUpdate(generics.RetrieveUpdateAPIView):       
     queryset=models.Course.objects.all()

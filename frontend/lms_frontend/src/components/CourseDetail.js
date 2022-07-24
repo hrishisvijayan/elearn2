@@ -14,7 +14,7 @@ function CourseDetail() {
     const [chapterData,setChapterData]=useState([]);
     const [teacherData,setTeacherData]=useState([]);
     const [relatedCourseData,setRelatedCourseData]=useState([]);
-
+    const [techListData,setTechListData] = useState([])
 
 
     //fetch course when page is loading
@@ -27,6 +27,7 @@ function CourseDetail() {
                 setTeacherData(res.data.teacher)            //here all the values are in this teacher data is done seperately because we are not able to access it directly
                 setChapterData(res.data.course_chapters)
                 setRelatedCourseData(JSON.parse(res.data.related_videos))     //here the data we are getting as related videos is not in json format so we have to parse it into json format
+                setTechListData(res.data.tech_list)     //added as new to list the tech list and the coures related to it
         })
     }catch(error){
         console.log(error)
@@ -55,9 +56,12 @@ function CourseDetail() {
                     </p>
                     <p className='fw-bold'>
                         Technologies Used:
-                        <Link to="/teacher-details/1">
+                        {/* <Link to="/teacher-details/1">
                             {courseData.techs}
-                        </Link>
+                        </Link> */}
+                        {techListData.map((tech,index) =>
+                        <Link to={`/category/${tech.trim()}`} className='badge bg-warning m-1' > {tech} </Link>
+                        )}
                     </p>
                     <p className='fw-bold'>
                         Duration: 3 hours 30 minutes

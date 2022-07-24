@@ -48,6 +48,9 @@ class Course(models.Model):
         related_videos = Course.objects.filter(techs__icontains=self.techs)
         return serializers.serialize('json',related_videos)
 
+    def tech_list(self):
+        tech_list = self.techs.split(',')    #to split the string 
+        return tech_list
 
 #Chapter Model --added new 
 class Chapter(models.Model):  

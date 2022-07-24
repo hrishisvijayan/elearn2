@@ -49,4 +49,7 @@ befor that we have to install 'react router dom' package. do some research on it
 
 21. target='__blank' is used to open the corresponding link in new tab.
 
-22. 
+22. do some research on __icontains ,
+
+
+
