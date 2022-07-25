@@ -46,10 +46,12 @@ function Login() {
 
     }
 
+    
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus');    
     if(localStorage.studentLoginStatus=='hello'){
         window.location.href='/dashboard'
     }
-
+    
     const [erroMsg,setErrorMsg]=useState();     // this is set the error message if the user is inputting a wrong credentials
 
     useEffect(()=>{

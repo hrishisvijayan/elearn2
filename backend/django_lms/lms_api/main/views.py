@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import generics
 from rest_framework import permissions
-from .serializers import StudentSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer 
+from .serializers import StudentCourseEnrollSerializer, StudentSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer 
 from . import models
 
 
@@ -162,3 +162,9 @@ def student_login(request):
     else:
         print('outside if')
         return JsonResponse({'bool' : False})
+
+
+class StudentEnrollCourseList(generics.ListCreateAPIView):       #through this class method we can view all the contents of the teacher allows to create data through post method
+    queryset=models.StudentCourseEnrollment.objects.all()
+    serializer_class=StudentCourseEnrollSerializer
+

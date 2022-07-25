@@ -77,9 +77,25 @@ class Student(models.Model):
     address=models.TextField() 
     interested_categories=models.TextField() 
 
+    
+    def __str__(self):
+        return self.full_name
+
 
     class Meta:                #this meta is used inorder to modify the name of database during display in django admin page
         verbose_name_plural = "5. Student" 
 
 
 
+#student course enrollment
+class StudentCourseEnrollment(models.Model):
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_courses')
+    student= models.ForeignKey(Student,on_delete=models.CASCADE,related_name='enrolled_student')
+    enrolled_time = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        verbose_name_plural = "6.Enrolled Courses"
+
+    def __str__(self):
+        return f"{self.course}-{self.student}"       #this syntax is used to recognize which student is for which course in the django admin

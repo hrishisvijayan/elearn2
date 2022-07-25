@@ -41,9 +41,10 @@ function TeacherFavourite() {
      
     const _formData = null
     const formSubmit=()=>{                //************** the key point to note here is if we don't give the name is append as exactly the same name as per seializer of backend then the response will be having a null values so be careful
+        const teacherId = localStorage.getItem('teacherId');
         const _formData = new FormData();
         _formData.append('category',courseData.category);         //this courseData.category's category is the name that we have given in the form and we can set value for the corresponging name in the form also like we have done here for taking category id.
-        _formData.append('teacher',31);
+        _formData.append('teacher',teacherId);
         _formData.append('title',courseData.title);
         _formData.append('description',courseData.description);
         _formData.append('featured_img',courseData.f_img,courseData.f_img.name); //have to do some research on this syntax on how to upload images
