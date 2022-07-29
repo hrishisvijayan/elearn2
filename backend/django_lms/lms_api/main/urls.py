@@ -36,4 +36,6 @@ urlpatterns = [
 
      path('student-enroll-course/', views.StudentEnrollCourseList.as_view()),
 
+     path('student-enroll-status/<int:student_id>/<int:course_id>',views.studentEnrollStatus),
+
 ]

@@ -10,7 +10,7 @@ function Register(){
         document.title='User Register'
     })
 
-    if(localStorage.teacherLoginStatus=='hello'){
+    if(localStorage.teacherLoginStatus=='success'){
         window.location.href='/student-dashboard'
     }
     

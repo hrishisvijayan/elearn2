@@ -32,7 +32,7 @@ function Login() {
             axios.post(baseUrl+'/student-login',studentFormData).then((res)=>{
                 console.log(res.data)
                 if (res.data.bool==true){                             //1. if boolean is true then we will store the data inside the local storage.
-                    localStorage.setItem('studentLoginStatus','true')
+                    localStorage.setItem('studentLoginStatus','success')
                     localStorage.setItem('studentId',res.data.student_id)   //we are saving the teacher's id from the backend in the local storage.
                     window.location.href='/dashboard'
                     
@@ -43,12 +43,12 @@ function Login() {
         }catch(error){
             console.log(error);
         }
-
+    
     }
 
     
     const studentLoginStatus = localStorage.getItem('studentLoginStatus');    
-    if(localStorage.studentLoginStatus=='hello'){
+    if(localStorage.studentLoginStatus=='success'){
         window.location.href='/dashboard'
     }
     

@@ -3,12 +3,13 @@ from asyncio.windows_events import NULL
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse,HttpResponse       # added as new after making react and to do login
 from django.views.decorators.csrf import csrf_exempt    # added as new after making react and to do login
-from rest_framework.views import APIView
+
 from rest_framework.response import Response 
 from rest_framework import generics
 from rest_framework import permissions
 from .serializers import StudentCourseEnrollSerializer, StudentSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer 
 from . import models
+from rest_framework.decorators import api_view
 
 
 #refer tutorial class based views Using mixins session read in django rest framework
@@ -167,4 +168,21 @@ def student_login(request):
 class StudentEnrollCourseList(generics.ListCreateAPIView):       #through this class method we can view all the contents of the teacher allows to create data through post method
     queryset=models.StudentCourseEnrollment.objects.all()
     serializer_class=StudentCourseEnrollSerializer
+
+
+
+@api_view(['GET'])
+def studentEnrollStatus(request,student_id,course_id):
+    # course_id = models.Course.objects.get(id=course_id)
+    # student_id = models.Student.objects.get(id=student_id)
+    print(course_id)
+    print(student_id)
+    enrollStatus = models.StudentCourseEnrollment.objects.filter(course=course_id,student=student_id).count()
+    print(enrollStatus)
+    if enrollStatus:
+        print('inside if')
+        return JsonResponse({'bool' : True})       # this thing is used to get the user id of the current logged in teacher and to fetch all the courses under him --- inorder to have this id on the fronend we have to save in the local storage in the front end
+    else:
+        print('outside if')
+        return JsonResponse({'bool' : False})
 

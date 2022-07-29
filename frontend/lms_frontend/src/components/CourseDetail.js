@@ -17,12 +17,16 @@ function CourseDetail() {
     const [relatedCourseData, setRelatedCourseData] = useState([]);
     const [techListData, setTechListData] = useState([]);
     const [userLoginStatus, setUserLoginStatus] = useState();
+    const [enrollStatus, setEnrollStatus] = useState();
 
 
     //fetch course when page is loading
     useEffect(() => {
         document.title = 'All Courses'
-        
+        const studentId = localStorage.getItem('studentId')
+        console.log('this is student Id',studentId)
+
+        // Fetch courses
         try {
             axios.get(baseUrl + '/teacher-edit-courses/' + course_id).then((res) => {
                 console.log(res.data)
@@ -35,11 +39,25 @@ function CourseDetail() {
         } catch (error) {
             console.log(error)
         }
+        
+        // Fetch enroll status
+        try {
+            axios.get(baseUrl + '/student-enroll-status/' + studentId +'/'+ course_id)
+            .then((res) => {
+                console.log(res.data.bool)
+                
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+
 
         const studentLoginStatus = localStorage.getItem('studentLoginStatus');
-        if (localStorage.studentLoginStatus == 'hello') {
+        if (localStorage.studentLoginStatus == 'success') {
             // window.location.href='/dashboard'
-            setUserLoginStatus()
+            console.log('this is student login status',localStorage.getItem('studentLoginStatus'))
+            setUserLoginStatus('success')
         }
 
     }, []);
