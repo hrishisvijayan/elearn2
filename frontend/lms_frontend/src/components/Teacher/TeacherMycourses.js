@@ -57,7 +57,7 @@ function TeacherMycourses() {
                                     <tr>
                                         <td><Link to={ '/all-chapter/'+course.id } > {course.title} </Link>  </td>          {/* the link is added in this line as new updation ,, course id is also passed as parameter */}
                                         <td> <img  src={course.featured_img} width='80' className='rounded'alt={course.title}  />  </td> {/* this line is used display the image from the backend */}
-                                        <td> <Link to='/'> 27 </Link> </td>
+                                        <td> <Link to='/' > {course.total_enrolled_students} </Link>  </td>
                                         <td> <Link to='/'> <button className='btn btn-danger' > Remove </button>  </Link> <Link to={'/teacher-edit-course/' + course.id }> <button className='btn btn-primary m-1' > update </button>  </Link> </td>
                                         <Link to={'teacher-addchapter/'+course.id} className='btn btn-success active m-2' >Add Chapters</Link>     {/* the to= '' link has been modified to make the id that we are passing as dynamic  */}
                                     </tr>

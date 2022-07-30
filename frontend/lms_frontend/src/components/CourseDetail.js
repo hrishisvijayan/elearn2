@@ -44,7 +44,8 @@ function CourseDetail() {
         try {
             axios.get(baseUrl + '/student-enroll-status/' + studentId +'/'+ course_id)
             .then((res) => {
-                console.log(res.data.bool)
+                console.log('--------------------------------boolean values',res.data.bool)
+                setEnrollStatus(res.data.bool)
                 
             })
         } catch (error) {
@@ -93,6 +94,7 @@ function CourseDetail() {
                         timerProgressBar: true,
                         showConfirmButton: false
                     })
+                    setEnrollStatus(res.data.bool);
                 }
                 console.log(res.data)
                 // window.location.href='/teacher-mycourses'
@@ -100,6 +102,7 @@ function CourseDetail() {
         } catch (error) {
             console.log(error)
         }
+        document.location.reload();
 
     }
 
@@ -133,15 +136,23 @@ function CourseDetail() {
                         Duration: 3 hours 30 minutes
                     </p>
                     <p className='fw-bold'>
-                        Total Enrolled: 427 students
+                        Total Enrolled: {courseData.total_enrolled_students}
                     </p>
                     <p className='fw-bold'>
                         Rating: 4.5/5
                     </p>
+
                     {
-                        userLoginStatus == 'success' &&
+                        userLoginStatus == 'success' && enrollStatus !== true &&
                         <p className='fw-bold'>
                             <button type='button' onClick={enrollCourse} className='btn btn-success' > Enroll In This Course </button>
+                        </p>
+                    }
+
+                    {
+                        userLoginStatus == 'success' && enrollStatus == true &&
+                        <p className='fw-bold'>
+                            <span  className='btn btn-primary' > You have already enrolled in this course </span>
                         </p>
                     }
 

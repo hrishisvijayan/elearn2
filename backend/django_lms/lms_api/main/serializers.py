@@ -17,7 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Course
-        fields=['id','category','teacher','title','description','featured_img','techs','course_chapters','related_videos','tech_list']     #this course chapter is used here for models relatd name in models of chapter so that we can get all the chapters under this course even though the models of course is not having chapters.
+        fields=['id','category','teacher','title','description','featured_img','techs','course_chapters','related_videos','tech_list','total_enrolled_students']     #this course chapter is used here for models relatd name in models of chapter so that we can get all the chapters under this course even though the models of course is not having chapters.
         depth=1
 
 

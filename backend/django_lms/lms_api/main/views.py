@@ -186,3 +186,10 @@ def studentEnrollStatus(request,student_id,course_id):
         print('outside if')
         return JsonResponse({'bool' : False})
 
+
+class CourseStudents(generics.ListAPIView):
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        students = models.Course.objects.filter(id=course_id)
+        
+

@@ -52,6 +52,13 @@ class Course(models.Model):
         tech_list = self.techs.split(',')    #to split the string 
         return tech_list
 
+    def total_enrolled_students(self):       #to find the number of students enrolled for courses
+        total_enrolled_students = StudentCourseEnrollment.objects.filter(course=self).count()
+        return total_enrolled_students
+
+
+
+
 #Chapter Model --added new 
 class Chapter(models.Model):  
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='course_chapters')    #here cascade so that if the course category is deleted then the the course is deleted
