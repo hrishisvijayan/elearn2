@@ -37,6 +37,8 @@ import TeacherAddchapter from './Teacher/TeacherAddchapter';
 import CourseChapter from './Teacher/CourseChapter';
 import EditChapter from './Teacher/TeacherEditChapter';
 import TeacherEditCourse from './Teacher/TeacherEditCourse';
+import EnrolledStudents from './Teacher/EnrolledStudents';
+
 
 
 
@@ -83,6 +85,7 @@ function Main() {
         <Route path="/teacher-profilesetting" element={<TeacherProfilesetting />} />
         <Route path="/teacher-changepassword" element={<TeacherChangepassword />} />
         <Route path="/teacher-details/:teacher_id" element={<TeacherDetails />} />
+        <Route path="/teacher-enrolledstudents/:course_id" element={<EnrolledStudents />} />
         
 
       </Switch> 

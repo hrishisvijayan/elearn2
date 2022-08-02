@@ -20,6 +20,9 @@ urlpatterns = [
     # specific chapter (all the chapters under specific course) 
     path('course-chapter/<int:course_id>',views.CourseChapterList.as_view()),
 
+    # the students under specific course
+    path('course-student/<int:course_id>',views.CourseStudents.as_view()),
+
     #teacher Courses
     path('teacher-courses/<int:teacher_id>',views.TeacherCourseList.as_view()),
 

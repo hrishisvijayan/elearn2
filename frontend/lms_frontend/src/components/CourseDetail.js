@@ -136,7 +136,7 @@ function CourseDetail() {
                         Duration: 3 hours 30 minutes
                     </p>
                     <p className='fw-bold'>
-                        Total Enrolled: {courseData.total_enrolled_students}
+                        Total Enrolled:  {courseData.total_enrolled_students} 
                     </p>
                     <p className='fw-bold'>
                         Rating: 4.5/5
