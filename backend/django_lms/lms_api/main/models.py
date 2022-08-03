@@ -106,3 +106,16 @@ class StudentCourseEnrollment(models.Model):
 
     def __str__(self):
         return f"{self.course}-{self.student}"       #this syntax is used to recognize which student is for which course in the django admin
+
+
+#Course Rating and Reviews
+class CourseRating(models.Model):
+    course=models.ForeignKey(Course,on_delete=models.CASCADE)
+    student=models.ForeignKey(Student,on_delete=models.CASCADE)
+    rating=models.PositiveIntegerField(default=0)
+    review=models.TextField(null=True)
+    review_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.course}-{self.student}-{self.rating}"
+

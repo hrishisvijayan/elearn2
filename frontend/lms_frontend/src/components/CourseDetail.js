@@ -24,7 +24,7 @@ function CourseDetail() {
     useEffect(() => {
         document.title = 'All Courses'
         const studentId = localStorage.getItem('studentId')
-        console.log('this is student Id',studentId)
+        console.log('this is student Id', studentId)
 
         // Fetch courses
         try {
@@ -39,15 +39,15 @@ function CourseDetail() {
         } catch (error) {
             console.log(error)
         }
-        
+
         // Fetch enroll status
         try {
-            axios.get(baseUrl + '/student-enroll-status/' + studentId +'/'+ course_id)
-            .then((res) => {
-                console.log('--------------------------------boolean values',res.data.bool)
-                setEnrollStatus(res.data.bool)
-                
-            })
+            axios.get(baseUrl + '/student-enroll-status/' + studentId + '/' + course_id)
+                .then((res) => {
+                    console.log('--------------------------------boolean values', res.data.bool)
+                    setEnrollStatus(res.data.bool)
+
+                })
         } catch (error) {
             console.log(error)
         }
@@ -57,13 +57,13 @@ function CourseDetail() {
         const studentLoginStatus = localStorage.getItem('studentLoginStatus');
         if (localStorage.studentLoginStatus == 'success') {
             // window.location.href='/dashboard'
-            console.log('this is student login status',localStorage.getItem('studentLoginStatus'))
+            console.log('this is student login status', localStorage.getItem('studentLoginStatus'))
             setUserLoginStatus('success')
         }
 
     }, []);
 
-    console.log('this is user login status',userLoginStatus)
+    console.log('this is user login status', userLoginStatus)
     console.log('this is course', courseData)
     console.log('this is the related course data', relatedCourseData)
     console.log('hei this is title', relatedCourseData.map((hai, index) => { console.log(hai.title) }))
@@ -136,10 +136,58 @@ function CourseDetail() {
                         Duration: 3 hours 30 minutes
                     </p>
                     <p className='fw-bold'>
-                        Total Enrolled:  {courseData.total_enrolled_students} 
+                        Total Enrolled:  {courseData.total_enrolled_students}
                     </p>
                     <p className='fw-bold'>
-                        Rating: 4.5/5
+                        Rating: 4.5/5  {
+
+                            userLoginStatus == 'success' && enrollStatus == true &&
+                            <>
+                                <button type='button' className='btn btn-success' data-bs-toggle="modal" data-bs-target="#ratingModal" > Rating </button>
+                                <div className="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel"> Rate for {courseData.title} </h5>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div className="modal-body">
+
+                                               
+                                                <form>
+                                                    <div className="mb-3">
+                                                        <label for="exampleInputEmail1" className="form-label"> Rating </label>
+                                                        <div>
+                                                            <select className='form-control' name="rating">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div className="mb-3">
+                                                            <label for="exampleInputPassword1" className="form-label"> Review </label>
+                                                            <p><textarea className='form-control' rows="10"  ></textarea></p>
+                                                         <p>
+                                                         {/* <input className='form-control mt-3 col-12' rows='10' type="text" /> */}
+                                                         </p>   
+
+
+                                                        </div>
+
+                                                        <button type="submit" className="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        }
                     </p>
 
                     {
@@ -152,7 +200,7 @@ function CourseDetail() {
                     {
                         userLoginStatus == 'success' && enrollStatus == true &&
                         <p className='fw-bold'>
-                            <span  className='btn btn-primary' > You have already enrolled in this course </span>
+                            <span className='btn btn-primary' > You have already enrolled in this course </span>
                         </p>
                     }
 
@@ -185,7 +233,7 @@ function CourseDetail() {
                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div className="modal-body">
-                                            <div class="ratio ratio-16x9">
+                                            <div className="ratio ratio-16x9">
                                                 <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title={chapter.title} allowfullscreen></iframe>
                                             </div>
                                         </div>

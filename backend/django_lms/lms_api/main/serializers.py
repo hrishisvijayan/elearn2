@@ -39,3 +39,9 @@ class StudentCourseEnrollSerializer(serializers.ModelSerializer):
         fields=['id','course','student','enrolled_time']
         depth = 1
 
+class CourseRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CourseRating
+        fields=['id','course','student','rating','review','review_time']
+        depth = 1
+

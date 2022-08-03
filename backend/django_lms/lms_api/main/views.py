@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt    # added as new after mak
 from rest_framework.response import Response 
 from rest_framework import generics
 from rest_framework import permissions
-from .serializers import StudentCourseEnrollSerializer, StudentSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer 
+from .serializers import CourseRatingSerializer, StudentCourseEnrollSerializer, StudentSerializer, TeacherSerializer,CategorySerializer,CourseSerializer,ChapterSerializer 
 from . import models
 from rest_framework.decorators import api_view
 
@@ -198,6 +198,9 @@ class CourseStudents(generics.ListAPIView):
         students = models.StudentCourseEnrollment.objects.filter(course=course)  
         return students
 
+class CourseRating(generics.ListAPIView):
+    serializer_class = CourseRatingSerializer
+    queryset = models.CourseRating.objects.all()
         
         
 

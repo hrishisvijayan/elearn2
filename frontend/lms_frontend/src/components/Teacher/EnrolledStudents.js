@@ -49,8 +49,8 @@ function EnrolledStudents() {
                                 <thead>
                                     <tr>
                                         <th> Name </th>
-                                        <th> Image </th>
-                                        <th> Total Enrolled </th>
+                                        <th> Email </th>
+                                        <th> Interest </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -59,8 +59,8 @@ function EnrolledStudents() {
                                     {studentData.map((student,index) =>             
                                     <tr>
                                         <td><Link to={ '/all-chapter/'+student.id } > {student.student.full_name}  </Link>  </td>          {/* the link is added in this line as new updation ,, course id is also passed as parameter */}
-                                        <td> <img  src={student.featured_img} width='80' className='rounded'alt={student.title}  />  </td> {/* this line is used display the image from the backend */}
-                                        <td> <Link to='/' > {student.total_enrolled_students} </Link>  </td>
+                                        <td> <Link to='/' > {student.student.email} </Link>  </td>
+                                        <td> <Link to='/' > {student.student.interested_categories} </Link>  </td>
                                         <td> <Link to='/'> <button className='btn btn-info btn-sm' > View </button>  </Link> </td>
                                         
                                     </tr>
