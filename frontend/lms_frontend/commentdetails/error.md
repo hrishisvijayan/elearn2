@@ -29,3 +29,4 @@ I solved it in my own way by setting the variable inside the localstorage inside
 
 12. error due to slash appending problem -- can be solved by adding '/' in the last. inside the axios.
 
+13. object is not iterable django error - change the get into filter

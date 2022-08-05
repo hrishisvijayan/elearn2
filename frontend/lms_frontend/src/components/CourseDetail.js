@@ -19,6 +19,10 @@ function CourseDetail() {
     const [userLoginStatus, setUserLoginStatus] = useState();
     const [enrollStatus, setEnrollStatus] = useState();
 
+    const [rating,setRating] = useState();
+
+    
+
 
     //fetch course when page is loading
     useEffect(() => {
@@ -106,6 +110,43 @@ function CourseDetail() {
 
     }
 
+    const handleChange=(event)=>{
+        setRating({
+            ...rating,                        // it will input the data in to the coursedata array(spread orperator is used)
+            [event.target.name]:event.target.value
+        });
+    }
+
+
+    const _formData = null
+    const formSubmit=()=>{                //************** the key point to note here is if we don't give the name is append as exactly the same name as per seializer of backend then the response will be having a null values so be careful
+        const teacherId = localStorage.getItem('teacherId');
+        const _formData = new FormData();
+        _formData.append('category',courseData.category);         //this courseData.category's category is the name that we have given in the form and we can set value for the corresponging name in the form also like we have done here for taking category id.
+        _formData.append('teacher',teacherId);
+        _formData.append('title',courseData.title);
+        _formData.append('description',courseData.description);
+        _formData.append('featured_img',courseData.f_img,courseData.f_img.name); //have to do some research on this syntax on how to upload images
+        _formData.append('techs',courseData.techs);
+        
+        console.log('submit button on',formSubmit)
+
+        try{
+            axios.post(baseUrl+'/course/',_formData,{
+                headers :{
+                    'content-type' : 'multipart/form-data'
+                }
+            }).then((res)=>{
+                console.log(res.data)
+                window.location.href='/teacher-mycourses'
+            });
+            }catch(error){
+                console.log(error)
+           }
+           
+    }
+    
+
     return (
         <div className='container mt-3'>
             <div className='row'>
@@ -173,7 +214,6 @@ function CourseDetail() {
                                                          <p>
                                                          {/* <input className='form-control mt-3 col-12' rows='10' type="text" /> */}
                                                          </p>   
-
 
                                                         </div>
 

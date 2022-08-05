@@ -198,9 +198,15 @@ class CourseStudents(generics.ListAPIView):
         students = models.StudentCourseEnrollment.objects.filter(course=course)  
         return students
 
-class CourseRating(generics.ListAPIView):
+class CourseRating(generics.ListCreateAPIView):
     serializer_class = CourseRatingSerializer
     queryset = models.CourseRating.objects.all()
+
+    # def get_queryset(self):
+    #     course_id = self.kwargs['course_id']
+    #     course = models.Course.objects.get(id=course_id)
+    #     rating = models.CourseRating.objects.filter(course=course)
+    #     return rating
         
         
 
